@@ -38,6 +38,7 @@ public abstract class MultithreadEventExecutorGroup extends AbstractEventExecuto
     
     // 创建DefaultPromise对象,GlobalEventExecutor为全局唯一的事件执行器
     private final Promise<?> terminationFuture = new DefaultPromise(GlobalEventExecutor.INSTANCE);
+    
     // EventLoop选择器
     private final EventExecutorChooser chooser;
 
@@ -63,6 +64,8 @@ public abstract class MultithreadEventExecutorGroup extends AbstractEventExecuto
         children = new SingleThreadEventExecutor[nThreads];
 
         // 判断是否为2的指数(配置怎么分配给Channel分配线程的类)
+        System.out.println("2的幂指数判断");
+        System.out.println("children.length = " + isPowerOfTwo(children.length));
         if (isPowerOfTwo(children.length)) {
             chooser = new PowerOfTwoEventExecutorChooser();
         } else {
@@ -75,6 +78,7 @@ public abstract class MultithreadEventExecutorGroup extends AbstractEventExecuto
             try {
             	// 创建 new NioEventLoop(创建的实际对象为NioEventLoop)
                 children[i] = newChild(threadFactory, args);
+                System.out.println("ClassType = " + children[i].getClass().getName());
                 success = true;
             } catch (Exception e) {
                 // TODO: Think about if this is a good exception type

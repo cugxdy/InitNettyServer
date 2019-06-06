@@ -39,7 +39,7 @@ public abstract class MultithreadEventLoopGroup extends MultithreadEventExecutor
     	// 类加载执行时
         DEFAULT_EVENT_LOOP_THREADS = Math.max(1, SystemPropertyUtil.getInt(
                 "io.netty.eventLoopThreads", NettyRuntime.availableProcessors() * 2));
-
+        System.out.println("DEFAULT_EVENT_LOOP_THREADS = " + DEFAULT_EVENT_LOOP_THREADS);
         if (logger.isDebugEnabled()) {
             logger.debug("-Dio.netty.eventLoopThreads: {}", DEFAULT_EVENT_LOOP_THREADS);
         }

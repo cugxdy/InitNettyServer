@@ -48,6 +48,7 @@ public class NioEventLoopGroup extends MultithreadEventLoopGroup {
     // 创建线程数为nThreads的线程池
     public NioEventLoopGroup(int nThreads) {
         this(nThreads, null);
+    	System.out.println("=====================NioEventLoopGroup初始化过程结束=======================");
     }
 
     /**

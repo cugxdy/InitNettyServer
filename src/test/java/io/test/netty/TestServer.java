@@ -12,7 +12,7 @@ public class TestServer {
 	@Test
 	public void test() {
 		NioEventLoopGroup boss = new NioEventLoopGroup(1);
-		NioEventLoopGroup worder = new NioEventLoopGroup(2);
+		NioEventLoopGroup worder = new NioEventLoopGroup(3);
 		
 		try {
 			ServerBootstrap bootstrap = new ServerBootstrap();
