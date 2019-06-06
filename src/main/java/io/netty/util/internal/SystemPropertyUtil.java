@@ -66,6 +66,7 @@ public final class SystemPropertyUtil {
 
         String value = null;
         try {
+        	
         	// 获取java系统属性
             if (System.getSecurityManager() == null) {
                 value = System.getProperty(key);
@@ -99,6 +100,7 @@ public final class SystemPropertyUtil {
      */
     // 返回boolean类型值
     public static boolean getBoolean(String key, boolean def) {
+    	// 获取系统属性值
         String value = get(key);
         if (value == null) {
             return def;

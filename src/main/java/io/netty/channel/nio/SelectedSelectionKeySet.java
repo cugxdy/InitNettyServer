@@ -22,6 +22,7 @@ import java.util.Iterator;
 
 final class SelectedSelectionKeySet extends AbstractSet<SelectionKey> {
 
+	// SelectionKey数组
     SelectionKey[] keys;
     int size;
 
@@ -72,6 +73,7 @@ final class SelectedSelectionKeySet extends AbstractSet<SelectionKey> {
         size = 0;
     }
 
+    // 以2的幂指数扩容数组
     private void increaseCapacity() {
         SelectionKey[] newKeys = new SelectionKey[keys.length << 1];
         System.arraycopy(keys, 0, newKeys, 0, size);

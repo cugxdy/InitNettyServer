@@ -374,7 +374,7 @@ public abstract class SingleThreadEventExecutor extends AbstractScheduledEventEx
      */
     protected boolean hasTasks() {
         assert inEventLoop();
-        // 判断任务队列为空！
+        // 当任务队列为空时,返回true,当不为空时返回false
         return !taskQueue.isEmpty();
     }
 
@@ -525,9 +525,9 @@ public abstract class SingleThreadEventExecutor extends AbstractScheduledEventEx
     protected long delayNanos(long currentTimeNanos) {
         ScheduledFutureTask<?> scheduledTask = peekScheduledTask();
         if (scheduledTask == null) {
+        	// 默认为1s
             return SCHEDULE_PURGE_INTERVAL;
         }
-
         return scheduledTask.delayNanos(currentTimeNanos);
     }
 
@@ -920,7 +920,7 @@ public abstract class SingleThreadEventExecutor extends AbstractScheduledEventEx
     }
 
     // ScheduledExecutorService implementation
-
+    // 1s = 1000000000ns
     private static final long SCHEDULE_PURGE_INTERVAL = TimeUnit.SECONDS.toNanos(1);
 
     // 启动线程
