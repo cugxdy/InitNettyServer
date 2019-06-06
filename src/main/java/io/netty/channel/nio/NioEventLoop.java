@@ -46,6 +46,7 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.Callable;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -279,8 +280,11 @@ public final class NioEventLoop extends SingleThreadEventLoop {
     @Override // 返回MpscQueue类型队列
     protected Queue<Runnable> newTaskQueue(int maxPendingTasks) {
         // This event loop never calls takeTask()
-        return maxPendingTasks == Integer.MAX_VALUE ? PlatformDependent.<Runnable>newMpscQueue()
-                                                    : PlatformDependent.<Runnable>newMpscQueue(maxPendingTasks);
+    	
+    	return new LinkedBlockingQueue<Runnable>(maxPendingTasks);
+    	
+        // return maxPendingTasks == Integer.MAX_VALUE ? PlatformDependent.<Runnable>newMpscQueue()
+                                                    // : PlatformDependent.<Runnable>newMpscQueue(maxPendingTasks);
     }
 
     @Override

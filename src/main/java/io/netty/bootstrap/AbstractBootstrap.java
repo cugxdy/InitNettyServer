@@ -77,6 +77,7 @@ public abstract class AbstractBootstrap<B extends AbstractBootstrap<B, C>, C ext
         channelFactory = bootstrap.channelFactory;
         handler = bootstrap.handler;
         localAddress = bootstrap.localAddress;
+        
         // Í¬²½²Ù×÷
         synchronized (bootstrap.options) {
             options.putAll(bootstrap.options);

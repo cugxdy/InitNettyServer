@@ -103,7 +103,6 @@ public class NioEventLoopGroup extends MultithreadEventLoopGroup {
         }
     }
 
-    
     @Override
     protected EventExecutor newChild(ThreadFactory threadFactory, Object... args) throws Exception {
     	// 创建NioEventLoop对象
