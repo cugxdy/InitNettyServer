@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit;
  */
 public abstract class AbstractScheduledEventExecutor extends AbstractEventExecutor {
 
-	// 定时任务队列
+	// (优先级)定时任务队列
     Queue<ScheduledFutureTask<?>> scheduledTaskQueue;
 
     // 返回距离开始等待的时间
@@ -126,7 +126,7 @@ public abstract class AbstractScheduledEventExecutor extends AbstractEventExecut
         return Math.max(0, scheduledTask.deadlineNanos() - nanoTime());
     }
 
-    // 返回任务队列中的头元素(删除并返回队列第一个元素)
+    // 返回任务队列中的头元素(返回队列第一个元素但是不删除)
     final ScheduledFutureTask<?> peekScheduledTask() {
         Queue<ScheduledFutureTask<?>> scheduledTaskQueue = this.scheduledTaskQueue;
         // 是否存在定时任务队列

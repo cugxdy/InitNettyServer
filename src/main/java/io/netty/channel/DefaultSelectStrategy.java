@@ -20,6 +20,7 @@ import io.netty.util.IntSupplier;
 /**
  * Default select strategy.
  */
+// 单例模式的使用
 final class DefaultSelectStrategy implements SelectStrategy {
     static final SelectStrategy INSTANCE = new DefaultSelectStrategy();
 
