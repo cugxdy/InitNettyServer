@@ -40,7 +40,7 @@ public class TestServer {
 			.childOption(ChannelOption.SO_BACKLOG, 1000)
 			.childHandler(new MyServerHander());
 			
-			ChannelFuture future = bootstrap.bind(9999).sync();
+			ChannelFuture future = bootstrap.bind(9998).sync();
 			future.channel().closeFuture().sync();
 			
 		} catch (Exception e) {

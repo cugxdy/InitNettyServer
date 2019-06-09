@@ -169,7 +169,6 @@ public abstract class AbstractScheduledEventExecutor extends AbstractEventExecut
         if (delay < 0) {
             delay = 0;
         }
-        
         // 创建ScheduledFutureTask定时任务
         return schedule(new ScheduledFutureTask<V>(
                 this, callable, ScheduledFutureTask.deadlineNanos(unit.toNanos(delay))));

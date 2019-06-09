@@ -482,14 +482,12 @@ public final class NioEventLoop extends SingleThreadEventLoop {
         for (;;) {
             try {
             	// 线程运行环境,死循环
-            	System.out.println("selectStrategy = " + selectStrategy.calculateStrategy(selectNowSupplier, hasTasks()));
                 // 在这里如果hasTasks() = true时,会先处理任务队列中的任务。
             	switch (selectStrategy.calculateStrategy(selectNowSupplier, hasTasks())) {
                     case SelectStrategy.CONTINUE:
                         continue;
                     case SelectStrategy.SELECT:
                     	// 将wakenUp设置为false
-                    	System.out.println("wakenUp = " + wakenUp);
                         select(wakenUp.getAndSet(false));
 
                         // 'wakenUp.compareAndSet(false, true)' is always evaluated
@@ -519,7 +517,6 @@ public final class NioEventLoop extends SingleThreadEventLoop {
                         // It is inefficient in that it wakes up the selector for both
                         // the first case (BAD - wake-up required) and the second case
                         // (OK - no wake-up required).
-                        System.out.println("wakenUp = " + wakenUp);
                         if (wakenUp.get()) {
                             selector.wakeup();
                         }
@@ -677,8 +674,6 @@ public final class NioEventLoop extends SingleThreadEventLoop {
     // netty对selectKey进行优化,Set -> Array;
     private void processSelectedKeysOptimized() {
     	// 遍历selectedKeys集合
-    	System.out.println("selectedKeys.size = " + selectedKeys.size);
-    	System.out.println("DISABLE_KEYSET_OPTIMIZATION = " + DISABLE_KEYSET_OPTIMIZATION);
         for (int i = 0; i < selectedKeys.size; ++i) {
             final SelectionKey k = selectedKeys.keys[i];
             // null out entry in the array to allow to have it GC'ed once the Channel close
