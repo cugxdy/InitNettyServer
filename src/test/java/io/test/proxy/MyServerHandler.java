@@ -21,8 +21,7 @@ public class MyServerHandler extends ChannelInboundHandlerAdapter {
 
 	
 	private SocketChannel channel;
-	
-	
+
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
     	 final Channel inboundChannel = ctx.channel();
@@ -85,5 +84,6 @@ public class MyServerHandler extends ChannelInboundHandlerAdapter {
             });
         }
     }
+    
 	
 }
