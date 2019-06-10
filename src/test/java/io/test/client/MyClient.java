@@ -50,7 +50,7 @@ public class MyClient {
 				}
 			});
 			
-			f.channel().close().syncUninterruptibly();
+			f.channel().closeFuture().syncUninterruptibly();
 		}catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -59,5 +59,4 @@ public class MyClient {
 			worker.shutdownGracefully();
 		}
 	}
-	
 }
